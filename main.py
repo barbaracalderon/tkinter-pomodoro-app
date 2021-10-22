@@ -28,7 +28,9 @@ start_button = tkinter.Button(text="Start", font=(FONT_NAME, 10), highlightthick
 checkmark_label = tkinter.Label(text="⚙", font=(FONT_NAME, 30), bg=RED, fg=GREEN)
 reset_button = tkinter.Button(text="Reset", font=(FONT_NAME, 10), highlightthickness=0)
 
-listbox_label = tkinter.Listbox()
+tasks = ('Example A', 'Example B', 'Example C', 'Example D', 'Example E')
+listbox_label = tkinter.Listbox(height=8, width=30, listvariable=tasks, bg=YELLOW, font=(FONT_NAME, 10))
+
 
 window.config(padx=50, pady=50, bg=RED)
 

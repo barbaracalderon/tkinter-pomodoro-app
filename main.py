@@ -10,6 +10,14 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
+# --- UI FUNCTIONS: Add/Remove tasks --- #
+task_list = []
+
+
+def add_button_click():
+    listbox_label.insert(tkinter.END, entry_task.get())
+
+
 # ----- UI SETUP ----- #
 window = tkinter.Tk()
 window.title("The Pomodoro App")
@@ -31,11 +39,9 @@ reset_button = tkinter.Button(text="Reset", font=(FONT_NAME, 10, "bold"), highli
 task_title = tkinter.Label(text="Keep track of your tasks today.", font=(FONT_NAME, 9),
                            highlightthickness=0)
 entry_task = tkinter.Entry(width=40)
-add_button = tkinter.Button(text="Add task", font=(FONT_NAME, 8), highlightthickness=0)
-tasks = ('Example A', 'Example B', 'Example C', 'Example D', 'Example E')
-tasks_var = tkinter.StringVar(value=tasks)
-listbox_label = tkinter.Listbox(height=8, width=30, listvariable=tasks_var, font=(FONT_NAME, 10))
-remove_button = tkinter.Button(text="Remove task", font=(FONT_NAME, 8), highlightthickness=0)
+add_button = tkinter.Button(text="Add task", command=add_button_click, font=(FONT_NAME, 8), highlightthickness=0)
+listbox_label = tkinter.Listbox(height=8, width=30, font=(FONT_NAME, 10))
+remove_button = tkinter.Button(text="Remove task", command=remove_button_click(), font=(FONT_NAME, 8), highlightthickness=0)
 
 window.config(padx=50, pady=50, bg=RED)
 
@@ -52,6 +58,8 @@ entry_task.grid(column=1, row=6)
 add_button.grid(column=1, row=7, pady=5)
 listbox_label.grid(column=1, row=8, pady=10)
 remove_button.grid(column=1, row=9)
+
+
 
 # --- Window Loop --- #
 window.mainloop()

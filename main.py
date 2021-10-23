@@ -35,15 +35,15 @@ tomato_img = tkinter.PhotoImage(file="tomato_a.png")
 canvas.create_image(100, 112, image=tomato_img)
 canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35))
 
-start_button = tkinter.Button(text="Start", font=(FONT_NAME, 10, "bold"), highlightthickness=0)
+start_button = tkinter.Button(text="Start", font=(FONT_NAME, 10, "bold"), highlightthickness=0, bg=GREEN)
 checkmark_label = tkinter.Label(text="⚙", font=(FONT_NAME, 30), bg=RED, fg=GREEN)
-reset_button = tkinter.Button(text="Reset", font=(FONT_NAME, 10, "bold"), highlightthickness=0)
+reset_button = tkinter.Button(text="Reset", font=(FONT_NAME, 10, "bold"), highlightthickness=0, bg=GREEN)
 
-task_title = tkinter.Label(text="Keep track of your tasks today.", font=(FONT_NAME, 9),
-                           highlightthickness=0)
-entry_task = tkinter.Entry(width=40)
+task_title = tkinter.Label(text="Keep track of your tasks today.", font=(FONT_NAME, 10),
+                           highlightthickness=0, bg=RED, fg=YELLOW)
+entry_task = tkinter.Entry(width=40, bg=GREEN)
 add_button = tkinter.Button(text="Add task", command=add_button_click, font=(FONT_NAME, 8), highlightthickness=0)
-listbox_label = tkinter.Listbox(height=8, width=30, font=(FONT_NAME, 10))
+listbox_label = tkinter.Listbox(height=8, width=30, font=(FONT_NAME, 10), bg=GREEN)
 remove_button = tkinter.Button(text="Remove task", command=remove_button_click, font=(FONT_NAME, 8), highlightthickness=0)
 
 window.config(padx=50, pady=50, bg=RED)

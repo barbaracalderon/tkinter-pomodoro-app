@@ -1,6 +1,7 @@
 import tkinter
 
 # ----- CONSTANTS ----- #
+
 PINK = "#e2979c"
 RED = "#C84B31"
 GREEN = "#dce0cd"
@@ -17,6 +18,8 @@ task_list = []
 def add_button_click():
     listbox_label.insert(tkinter.END, entry_task.get())
 
+def remove_button_click():
+    listbox_label.delete(tkinter.ANCHOR)
 
 # ----- UI SETUP ----- #
 window = tkinter.Tk()
@@ -41,7 +44,7 @@ task_title = tkinter.Label(text="Keep track of your tasks today.", font=(FONT_NA
 entry_task = tkinter.Entry(width=40)
 add_button = tkinter.Button(text="Add task", command=add_button_click, font=(FONT_NAME, 8), highlightthickness=0)
 listbox_label = tkinter.Listbox(height=8, width=30, font=(FONT_NAME, 10))
-remove_button = tkinter.Button(text="Remove task", command=remove_button_click(), font=(FONT_NAME, 8), highlightthickness=0)
+remove_button = tkinter.Button(text="Remove task", command=remove_button_click, font=(FONT_NAME, 8), highlightthickness=0)
 
 window.config(padx=50, pady=50, bg=RED)
 

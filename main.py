@@ -1,4 +1,5 @@
 import tkinter
+import math
 
 # ----- CONSTANTS ----- #
 
@@ -10,6 +11,19 @@ FONT_NAME = "Lucida Console"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
+
+# --- UI FUNCTIONS: Countdown Clock --- #
+
+def start_timer():
+    start_countdown(10)
+
+def start_countdown(count):
+
+    count_min = math.floor(count/60)
+    count_sec = count%60
+    canvas.itemconfig(time_display, text=f'{count_min}:{count_sec}')
+    if count > 0:
+        window.after(1000, start_countdown, count - 1)
 
 
 # --- UI FUNCTIONS: Add/Remove tasks --- #
@@ -35,17 +49,18 @@ canvas = tkinter.Canvas(width=200, height=224, bg=RED, highlightthickness=0)
 
 tomato_img = tkinter.PhotoImage(file="tomato_a.png")
 canvas.create_image(100, 112, image=tomato_img)
-canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35))
+time_display = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35))
 
-start_button = tkinter.Button(text="Start", font=(FONT_NAME, 10, "bold"), highlightthickness=0, bg=GREEN)
+start_button = tkinter.Button(text="Start", font=(FONT_NAME, 10, "bold"), highlightthickness=0, bg=GREEN,
+                              command=start_timer)
 checkmark_label = tkinter.Label(text="⚙", font=(FONT_NAME, 30), bg=RED, fg=GREEN)
 reset_button = tkinter.Button(text="Reset", font=(FONT_NAME, 10, "bold"), highlightthickness=0, bg=GREEN)
 
-task_phrase = tkinter.Label(text="Keep track of your tasks today.", font=(FONT_NAME, 10),
+task_phrase = tkinter.Label(text="Keep track of your tasks today.", font=(FONT_NAME, 11),
                             highlightthickness=0, bg=RED, fg=YELLOW)
-entry_task = tkinter.Entry(width=40, bg=GREEN)
+entry_task = tkinter.Entry(width=53, bg=GREEN)
 add_button = tkinter.Button(text="Add task", command=add_button_click, font=(FONT_NAME, 8), highlightthickness=0)
-listbox_label = tkinter.Listbox(height=8, width=30, font=(FONT_NAME, 10), bg=GREEN)
+listbox_label = tkinter.Listbox(height=8, width=40, font=(FONT_NAME, 10), bg=GREEN)
 remove_button = tkinter.Button(text="Remove task", command=remove_button_click, font=(FONT_NAME, 8),
                                highlightthickness=0)
 

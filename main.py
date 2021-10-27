@@ -6,16 +6,35 @@ import math
 PINK = "#e2979c"
 RED = "#C84B31"
 GREEN = "#dce0cd"
+GREEN_MSG = "#125C13"
 YELLOW = "#ECDBBA"
 FONT_NAME = "Lucida Console"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 0
+SHORT_BREAK_MIN = 0
+LONG_BREAK_MIN = 1
+repetition = 0
 
 # --- UI FUNCTIONS: Countdown Clock --- #
 
 def start_timer():
-    start_countdown(10)
+    global repetition
+    global title_task_label
+    repetition += 1
+
+    work_sec = WORK_MIN * 60
+    short_break_sec = SHORT_BREAK_MIN * 60
+    long_break_sec = LONG_BREAK_MIN * 60
+
+    if repetition % 8 == 0:
+        title_task_label.config(text="long break", font=(FONT_NAME, 20), bg=GREEN, fg=GREEN_MSG)
+        start_countdown(long_break_sec)
+    elif repetition % 2 == 0:
+        start_countdown(short_break_sec)
+        title_task_label.config(text="short break", font=(FONT_NAME, 20), bg=GREEN, fg=PINK)
+    else:
+        title_task_label.config(text="work and focus", font=(FONT_NAME, 20), bg=RED, fg=PINK)
+        start_countdown(work_sec)
+
 
 def start_countdown(count):
 
@@ -26,6 +45,8 @@ def start_countdown(count):
     canvas.itemconfig(time_display, text=f'{count_min}:{count_sec}')
     if count > 0:
         window.after(1000, start_countdown, count - 1)
+    else:
+        start_timer()
 
 
 # --- UI FUNCTIONS: Add/Remove tasks --- #
